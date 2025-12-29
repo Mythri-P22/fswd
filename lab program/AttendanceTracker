@@ -1,0 +1,65 @@
+import React, { useState } from 'react';
+
+const AttendanceTracker = () => {
+  // State for students and their attendance status
+  const [students, setStudents] = useState([
+    { name: 'John Doe', status: 'Absent' },
+    { name: 'Jane Smith', status: 'Absent' },
+    { name: 'Michael Johnson', status: 'Absent' },
+    { name: 'Sarah Lee', status: 'Absent' },
+    { name: 'David Brown', status: 'Absent' }
+  ]);
+
+  // Function to toggle attendance status (Present/Absent)
+  const toggleAttendance = (index) => {
+    setStudents((prevStudents) => {
+      const updatedStudents = [...prevStudents];
+      const student = updatedStudents[index];
+      student.status = student.status === 'Present' ? 'Absent' : 'Present';
+      return updatedStudents;
+    });
+  };
+
+  return (
+    <div className="attendance-container">
+      <h1>Attendance Tracker</h1>
+      <table className="attendance-table">
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Status</th>
+            <th>Mark Attendance</th>
+          </tr>
+        </thead>
+        <tbody>
+          {students.map((student, index) => (
+            <tr key={index}>
+              <td>{student.name}</td>
+              <td>{student.status}</td>
+              <td>
+                <button onClick={() => toggleAttendance(index)}>
+                  Mark {student.status === 'Present' ? 'Absent' : 'Present'}
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default AttendanceTracker;
+
+import React from 'react';
+import AttendanceTracker from './AttendanceTracker';
+
+function App() {
+  return (
+    <div className="App">
+      <AttendanceTracker />
+    </div>
+  );
+}
+
+export default App;

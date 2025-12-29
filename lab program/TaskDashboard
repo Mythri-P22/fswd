@@ -1,0 +1,71 @@
+import React, { useState } from 'react';
+
+const TaskDashboard = () => {
+  // State for task input and task list
+  const [task, setTask] = useState('');
+  const [tasks, setTasks] = useState([]);
+
+  // Handle input change
+  const handleChange = (e) => {
+    setTask(e.target.value);
+  };
+
+  // Add task
+  const addTask = (e) => {
+    e.preventDefault();
+    if (task.trim() !== '') {
+      setTasks([...tasks, task]);
+      setTask('');
+    }
+  };
+
+  // Remove task
+  const removeTask = (index) => {
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  };
+
+  return (
+    <div className="task-dashboard">
+      <h1>Task List Dashboard</h1>
+
+      <form onSubmit={addTask}>
+        <input
+          type="text"
+          placeholder="Enter a task"
+          value={task}
+          onChange={handleChange}
+        />
+        <button type="submit">Add Task</button>
+      </form>
+
+      <ul className="task-list">
+        {tasks.length > 0 ? (
+          tasks.map((taskItem, index) => (
+            <li key={index}>
+              {taskItem}
+              <button onClick={() => removeTask(index)}>Remove</button>
+            </li>
+          ))
+        ) : (
+          <p>No tasks added yet.</p>
+        )}
+      </ul>
+    </div>
+  );
+};
+
+export default TaskDashboard;
+
+import React from 'react';
+import TaskDashboard from './TaskDashboard';
+
+function App() {
+  return (
+    <div className="App">
+      <TaskDashboard />
+    </div>
+  );
+}
+
+export default App;

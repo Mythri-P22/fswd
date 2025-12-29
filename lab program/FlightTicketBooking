@@ -1,0 +1,75 @@
+import React from 'react';
+
+const FlightTicketBooking = () => {
+
+  const handleBooking = () => {
+    // Welcome alert
+    alert("Welcome to SkyWay Airlines ✈️");
+
+    // User input using prompt
+    const name = prompt("Enter Passenger Name:");
+    if (!name) {
+      alert("Booking cancelled. Name is required.");
+      return;
+    }
+
+    const source = prompt("Enter Source City:");
+    if (!source) {
+      alert("Booking cancelled. Source city is required.");
+      return;
+    }
+
+    const destination = prompt("Enter Destination City:");
+    if (!destination) {
+      alert("Booking cancelled. Destination city is required.");
+      return;
+    }
+
+    const tickets = prompt("Enter Number of Tickets:");
+    if (!tickets || tickets <= 0) {
+      alert("Invalid number of tickets.");
+      return;
+    }
+
+    // Confirmation dialog
+    const confirmBooking = confirm(
+      `Please confirm your booking:\n\n` +
+      `Passenger: ${name}\n` +
+      `From: ${source}\n` +
+      `To: ${destination}\n` +
+      `Tickets: ${tickets}`
+    );
+
+    // Final result
+    if (confirmBooking) {
+      alert(
+        `🎉 Booking Confirmed!\n\n` +
+        `Thank you ${name}.\n` +
+        `Your flight from ${source} to ${destination} is booked.`
+      );
+    } else {
+      alert("Booking cancelled by user.");
+    }
+  };
+
+  return (
+    <div className="booking-container">
+      <h1>Flight Ticket Booking</h1>
+      <button onClick={handleBooking}>Book Flight</button>
+    </div>
+  );
+};
+
+export default FlightTicketBooking;
+import React from 'react';
+import FlightTicketBooking from './FlightTicketBooking';
+
+function App() {
+  return (
+    <div className="App">
+      <FlightTicketBooking />
+    </div>
+  );
+}
+
+export default App;

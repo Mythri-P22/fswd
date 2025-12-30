@@ -1,0 +1,70 @@
+import React from "react";
+
+const EventRegistration = () => {
+
+  const handleRegistration = () => {
+    // Welcome alert
+    alert("Welcome to TechFest 2025 🎉");
+
+    // Participant Name
+    const name = prompt("Enter Participant Name:");
+    if (name === null || name.trim() === "") {
+      alert("Registration cancelled. Name is required.");
+      return;
+    }
+
+    // Email
+    const email = prompt("Enter Email ID:");
+    if (email === null || email.trim() === "") {
+      alert("Registration cancelled. Email is required.");
+      return;
+    }
+
+    // Event Name
+    const eventName = prompt("Enter Event Name:");
+    if (eventName === null || eventName.trim() === "") {
+      alert("Registration cancelled. Event name is required.");
+      return;
+    }
+
+    // Confirmation dialog
+    const confirmRegistration = confirm(
+      "Please confirm your registration:\n\n" +
+      "Name: " + name + "\n" +
+      "Email: " + email + "\n" +
+      "Event: " + eventName
+    );
+
+    // Final result
+    if (confirmRegistration) {
+      alert(
+        "✅ Registration Successful!\n\n" +
+        "Thank you " + name + ".\n" +
+        "You are registered for " + eventName + "."
+      );
+    } else {
+      alert("Registration cancelled by user.");
+    }
+  };
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Event Registration System</h1>
+      <button onClick={handleRegistration}>Register Now</button>
+    </div>
+  );
+};
+
+export default EventRegistration;
+import React from "react";
+import EventRegistration from "./EventRegistration";
+
+function App() {
+  return (
+    <div>
+      <EventRegistration />
+    </div>
+  );
+}
+
+export default App;

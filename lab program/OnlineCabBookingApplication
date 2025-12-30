@@ -1,0 +1,87 @@
+import React from "react";
+
+const CabBooking = () => {
+
+  const handleBooking = () => {
+    // Welcome message
+    alert("Welcome to QuickRide Cab Services 🚕");
+
+    // Customer Name
+    const customerName = prompt("Enter Customer Name:");
+    if (customerName === null || customerName.trim() === "") {
+      alert("Booking cancelled. Customer name is required.");
+      return;
+    }
+
+    // Pickup Location
+    const pickup = prompt("Enter Pickup Location:");
+    if (pickup === null || pickup.trim() === "") {
+      alert("Booking cancelled. Pickup location is required.");
+      return;
+    }
+
+    // Drop Location
+    const drop = prompt("Enter Drop Location:");
+    if (drop === null || drop.trim() === "") {
+      alert("Booking cancelled. Drop location is required.");
+      return;
+    }
+
+    // Cab Type
+    const cabType = prompt("Enter Cab Type (Mini / Sedan / SUV):");
+    if (cabType === null || cabType.trim() === "") {
+      alert("Booking cancelled. Cab type is required.");
+      return;
+    }
+
+    // Number of Passengers
+    const passengers = prompt("Enter Number of Passengers:");
+    if (passengers === null || isNaN(passengers) || passengers <= 0) {
+      alert("Invalid number of passengers.");
+      return;
+    }
+
+    // Confirmation Dialog
+    const confirmBooking = confirm(
+      "Please confirm your booking:\n\n" +
+      "Customer Name: " + customerName + "\n" +
+      "Pickup Location: " + pickup + "\n" +
+      "Drop Location: " + drop + "\n" +
+      "Cab Type: " + cabType + "\n" +
+      "Passengers: " + passengers
+    );
+
+    // Final Output
+    if (confirmBooking) {
+      alert(
+        "🚖 Booking Confirmed!\n\n" +
+        "Thank you, " + customerName + ".\n" +
+        "Your " + cabType + " cab from " + pickup +
+        " to " + drop + " is booked successfully."
+      );
+    } else {
+      alert("Booking cancelled by user.");
+    }
+  };
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Online Cab Booking Application</h1>
+      <button onClick={handleBooking}>Book Cab</button>
+    </div>
+  );
+};
+
+export default CabBooking;
+import React from "react";
+import CabBooking from "./CabBooking";
+
+function App() {
+  return (
+    <div>
+      <CabBooking />
+    </div>
+  );
+}
+
+export default App;
